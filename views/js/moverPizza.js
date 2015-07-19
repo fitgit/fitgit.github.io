@@ -6,6 +6,7 @@ onmessage= function (event) {
   //console.log("item array=" + event.data.items);
   console.log("items=" + event.data.items + "scrollTop=" + event.data.scrollTop);
   var items=JSON.parse(event.data.items);
+   console.log("items after parse=" + items);
   var phase;
   var scrollTop=event.data.scrollTop;
   
