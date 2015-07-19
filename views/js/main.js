@@ -528,7 +528,7 @@ function updatePositions() {
   var items = document.querySelectorAll('.mover');
   var arrayItems = Array.prototype.slice.call(items);
   //console.log("items=" + JSON.stringify(items));
-  console.log("items=" + arrayItems) ;
+  console.log("items=" + arrayItems.toString()) ;
  // var SnodeList=JSON.stringify(items);
   var scrollTop=document.body.scrollTop;
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
