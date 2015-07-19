@@ -4,7 +4,8 @@ onmessage= function (event) {
   var items = document.querySelectorAll('.mover');*/
 
   //console.log("item array=" + event.data.items);
-  console.log("items=" + event.data.items + "scrollTop=" + event.data.scrollTop);
+  console.log("items=" + event.data.items + "typeof=" + typeof(event.data.items) + "scrollTop=" + event.data.scrollTop);
+  if (typeof event.data.items === '')
   var items=JSON.parse(event.data.items);
    console.log("items after parse=" + items);
   var phase;
