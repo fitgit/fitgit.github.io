@@ -1,8 +1,8 @@
-onmessage= function () {
+onmessage= function (event) {
   console.log("Begin moverPizza function");
   var items = document.querySelectorAll('.mover');
   var phase;
-  var scrollTop=document.body.scrollTop;
+  var scrollTop=event.data.scrollTop;
   console.log("items=" + items.length + "scrollTop=" + event.scrollTop);
   for (var i = 0; i < items.length; i++) {
     phase = Math.sin((scrollTop / 1250) + (i % 5));
