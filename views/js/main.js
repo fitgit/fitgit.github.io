@@ -529,10 +529,14 @@ function updatePositions() {
   var phase;
   var scrollTop=document.body.scrollTop;
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
-   if(typeof(Worker) !== "undefined") {
-        if(typeof(myWebWorker) == "undefined") {
-          myWebWorker= new Worker("moverPizza.js");
-        }
+  if(typeof(Worker) !== "undefined") {
+    if(typeof(myWebWorker) == "undefined") {
+      myWebWorker= new Worker("moverPizza.js");
+    }
+  }      
+  else{
+      console.log("Sorry! No Web Worker support.");
+  }    
   myWebWorker.postMessage(items,scrollTop);
   myWebWorker.onmessage=function(items) {
     console.log("updatePositions:Done painting mover pizzas");
