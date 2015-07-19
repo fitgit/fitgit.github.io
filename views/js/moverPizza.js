@@ -6,7 +6,7 @@ onmessage= function (event) {
   console.log("item array=" + event.data.items);
   var phase;
   var scrollTop=event.data.scrollTop;
-  console.log("items=" + event.data.items + "scrollTop=" + event.scrollTop);
+  console.log("items=" + event.data.items + "scrollTop=" + event.data.scrollTop);
   for (var i = 0; i < items.length; i++) {
     phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
