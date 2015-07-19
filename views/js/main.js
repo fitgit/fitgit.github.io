@@ -529,7 +529,7 @@ function updatePositions() {
   var arrayItems = Array.prototype.slice.call(items);
   console.log("items=" + JSON.stringify(arrayItems));
   //console.log("items=" + arrayItems.toString()) ;
- // var SnodeList=JSON.stringify(items);
+  var SnodeList=JSON.stringify(arrayItems);
   var scrollTop=document.body.scrollTop;
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
   if(typeof(Worker) !== "undefined") {
@@ -541,7 +541,7 @@ function updatePositions() {
       console.log("Sorry! No Web Worker support.");
   }    
   /*var msg ={"items":SnodeList,"scrollTop":scrollTop};*/
-  var msg={"items":arrayItems,"scrollTop":10};
+  var msg={"items":SnodeList,"scrollTop":10};
   myWebWorker.postMessage(msg);
   myWebWorker.onmessage=function(event) {
     console.log("updatePositions:Done painting mover pizzas" + event.data.msg);
