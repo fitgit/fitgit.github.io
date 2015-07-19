@@ -538,7 +538,7 @@ function updatePositions() {
   else{
       console.log("Sorry! No Web Worker support.");
   }    
-  var event ={"items":items.toString(),"scrollTop":scrollTop};
+  var event ={"items":JSON.stringify(items),"scrollTop":scrollTop};
   myWebWorker.postMessage(event);
   myWebWorker.onmessage=function(event) {
     console.log("updatePositions:Done painting mover pizzas" + event.data.msg);
