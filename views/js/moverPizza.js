@@ -15,6 +15,7 @@ onmessage= function (event) {
     items[i].left = items[i].basicLeft + 100 * phase + 'px';
   }
   console.log("Posting items to main" +JSON.stringify(items));
-  postMessage({msg:"all done"});
+  var msgBack={"leftifiedItem":JSON.stringify(items)};
+  postMessage(msgBack);
   console.log("End moverPizza function");
 };
