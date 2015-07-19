@@ -14,7 +14,7 @@ onmessage= function (event) {
     phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].left = items[i].basicLeft + 100 * phase + 'px';
   }
-  console.log("Posting items to main");
+  console.log("Posting items to main" +JSON.stringify(items));
   postMessage({msg:"all done"});
   console.log("End moverPizza function");
 };
