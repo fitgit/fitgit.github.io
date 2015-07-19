@@ -527,8 +527,8 @@ function updatePositions() {
 
   var items = document.querySelectorAll('.mover');
   var arrayItems = Array.prototype.slice.call(items);
-  //console.log("items=" + JSON.stringify(items));
-  console.log("items=" + arrayItems.toString()) ;
+  console.log("items=" + JSON.stringify(arrayItems));
+  //console.log("items=" + arrayItems.toString()) ;
  // var SnodeList=JSON.stringify(items);
   var scrollTop=document.body.scrollTop;
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
@@ -565,7 +565,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 35; i++) {
+  for (var i = 0; i < 3; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
