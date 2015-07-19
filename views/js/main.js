@@ -539,7 +539,7 @@ function updatePositions() {
   }    
   /*var event ={"items":items,"scrollTop":scrollTop};*/
   myWebWorker.postMessage();
-  myWebWorker.onmessage=function(items) {
+  myWebWorker.onmessage=function() {
     console.log("updatePositions:Done painting mover pizzas");
   }
  
