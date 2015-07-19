@@ -2,8 +2,9 @@ onmessage= function (event) {
   console.log("Begin moverPizza function");
   /*
   var items = document.querySelectorAll('.mover');*/
-//  var items=JSON.parse(event.data.items);
-  console.log("item array=" + event.data.items);
+
+  console.log("item array=" + event.data.SarrayItems);
+  var items=JSON.parse(event.data.SarrayItems);
   var phase;
   var scrollTop=event.data.scrollTop;
   console.log("items=" + event.data.items + "scrollTop=" + event.data.scrollTop);
