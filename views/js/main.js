@@ -527,7 +527,7 @@ function updatePositions() {
 
   var items = document.querySelectorAll('.mover');
   console.log("items=" + JSON.stringify(items));
- 
+  var SnodeList=JSON.stringify(items)
   var scrollTop=document.body.scrollTop;
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
   if(typeof(Worker) !== "undefined") {
@@ -538,7 +538,7 @@ function updatePositions() {
   else{
       console.log("Sorry! No Web Worker support.");
   }    
-  var event ={"items":JSON.stringify(items),"scrollTop":scrollTop};
+  var event ={"items":SnodeList,"scrollTop":scrollTop};
   myWebWorker.postMessage(event);
   myWebWorker.onmessage=function(event) {
     console.log("updatePositions:Done painting mover pizzas" + event.data.msg);
