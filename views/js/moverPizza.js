@@ -1,14 +1,14 @@
-onmessage= function (event) {
+onmessage= function () {
   console.log("Begin moverPizza function");
+  var items = document.querySelectorAll('.mover');
   var phase;
-  var items=event.data.items;
-  var scrollTop=event.data.scrollTop;
+  var scrollTop=document.body.scrollTop;
   console.log("items=" + items.length + "scrollTop=" + event.scrollTop);
   for (var i = 0; i < items.length; i++) {
     phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
   console.log("Posting items to main");
-  postMessage(items);
+  postMessage();
   console.log("End moverPizza function");
 }
