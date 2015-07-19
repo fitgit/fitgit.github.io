@@ -9,6 +9,6 @@ onmessage= function (event) {
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
   console.log("Posting items to main");
-  postMessage("all done");
+  postMessage({msg:"all done"});
   console.log("End moverPizza function");
 };
