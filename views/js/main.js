@@ -539,8 +539,8 @@ function updatePositions() {
   }    
   /*var event ={"items":items,"scrollTop":scrollTop};*/
   myWebWorker.postMessage({"scrollTop":scrollTop});
-  myWebWorker.onmessage=function() {
-    console.log("updatePositions:Done painting mover pizzas");
+  myWebWorker.onmessage=function(event) {
+    console.log("updatePositions:Done painting mover pizzas" + event.data.msg);
   }
  
 
