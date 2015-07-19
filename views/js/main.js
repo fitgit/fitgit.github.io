@@ -543,9 +543,9 @@ function updatePositions() {
   var msg={"items":SarrayItems,"scrollTop":10};
   myWebWorker.postMessage(msg);
   myWebWorker.onmessage=function(event) {
-    console.log("updatePositions:Done painting mover pizzas" + event.data.msgBack);
-    var objMovers=JSON.parse(event.data.msgBack);
-    document.querySelector("#movingPizzas1").appendChild(msgBack);
+    console.log("updatePositions:Done painting mover pizzas" + event.data.leftifiedItem);
+    var objMovers=JSON.parse(event.data.leftifiedItem);
+    document.querySelector("#movingPizzas1").appendChild(objMovers);
   }
  
 
