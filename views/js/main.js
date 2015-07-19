@@ -19,6 +19,7 @@ cameron *at* udacity *dot* com
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
 var pizzaIngredients = {};
+var myWebWorker;
 pizzaIngredients.meats = [
   "Pepperoni",
   "Sausage",
@@ -496,7 +497,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
-
+/*
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
@@ -518,7 +519,34 @@ function updatePositions() {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
   }
-}
+}*/
+
+function updatePositions() {
+  frame++;
+  window.performance.mark("mark_start_frame");
+
+  var items = document.querySelectorAll('.mover');
+  var phase;
+  var scrollTop=document.body.scrollTop;
+  /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
+   if(typeof(Worker) !== "undefined") {
+        if(typeof(myWebWorker) == "undefined") {
+          myWebWorker= new Worker("moverPizza.js");
+        }
+  myWebWorker.postMessage(items,scrollTop);
+  myWebWorker.onmessage=function(items) {
+    console.log("updatePositions:Done painting mover pizzas");
+  }
+ 
+
+  // User Timing API to the rescue again. Seriously, it's worth learning.
+  // Super easy to create custom metrics.
+  window.performance.mark("mark_end_frame");
+  window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
+  if (frame % 10 === 0) {
+    var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
+    logAverageFrame(timesToUpdatePosition);
+  }
 
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
