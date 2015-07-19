@@ -526,7 +526,7 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-  console.log("items=" + items.JSON.stringify(items));
+  console.log("items=" + JSON.stringify(items));
  
   var scrollTop=document.body.scrollTop;
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
