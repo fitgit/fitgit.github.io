@@ -3,7 +3,7 @@ onmessage= function (event) {
   /*
   var items = document.querySelectorAll('.mover');*/
   var items=JSON.parse(event.data.items);
-  console.log("item array=" + item.length);
+  console.log("item array=" + items.length);
   var phase;
   var scrollTop=event.data.scrollTop;
   console.log("items=" + items.length + "scrollTop=" + event.scrollTop);
