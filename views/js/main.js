@@ -527,7 +527,7 @@ function updatePositions() {
 
   var items = document.querySelectorAll('.mover');
   var arrayItems = Array.prototype.slice.call(items);
-  console.log("items=" + JSON.stringify(arrayItems));
+  //console.log("items=" + JSON.stringify(arrayItems));
   var SarrayItems=JSON.stringify(arrayItems);
   var scrollTop=document.body.scrollTop;
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
