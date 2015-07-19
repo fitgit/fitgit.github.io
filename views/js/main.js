@@ -531,7 +531,7 @@ function updatePositions() {
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
   if(typeof(Worker) !== "undefined") {
     if(typeof(myWebWorker) == "undefined") {
-      myWebWorker= new Worker("moverPizza.js");
+      myWebWorker= new Worker("js/moverPizza.js");
     }
   }      
   else{
