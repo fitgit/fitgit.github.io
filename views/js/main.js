@@ -527,7 +527,7 @@ function updatePositions() {
 
   /*var items = document.querySelectorAll('.mover');*/
  
-  var scrollTop=document.body.scrollTop;*/
+  var scrollTop=document.body.scrollTop;
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
   if(typeof(Worker) !== "undefined") {
     if(typeof(myWebWorker) == "undefined") {
