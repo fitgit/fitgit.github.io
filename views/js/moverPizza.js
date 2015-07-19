@@ -2,10 +2,10 @@ onmessage= function (event) {
   console.log("Begin moverPizza function");
   /*
   var items = document.querySelectorAll('.mover');*/
-  var items=JSON.parse(event.items);
+  var items=JSON.parse(event.data.items);
   console.log("item array=" + items.length);
   var phase;
-  var scrollTop=event.scrollTop;
+  var scrollTop=event.data.scrollTop;
   console.log("items=" + items.length + "scrollTop=" + event.scrollTop);
   for (var i = 0; i < items.length; i++) {
     phase = Math.sin((scrollTop / 1250) + (i % 5));
