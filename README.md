@@ -1,7 +1,8 @@
 #Part 1: Optimize PageSpeed Insights score.
 ##To run the optimize pageSpeed Insights,
 1. Click on https://developers.google.com/speed/pagespeed/insights, Type in the url, http://fitgit.github.io in the input area and click on analyze.
-###index.html
+
+##index.html
 1. Minifyed index.html,css and Javascripts. In-line comments are in commentedIndex.html for reference.
 2. In-lined the style.css, so as to take it out of the CRP.
 3. Changed loading of google font from CDN to WebFont loader.<br>
