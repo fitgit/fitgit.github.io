@@ -452,7 +452,8 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
     /*Changed from querySelectorAll to getElementsByClassName for performance.
-     *changed computing of randomPizza NodeList repeatedly in the loop */
+     *changed computing of randomPizza NodeList repeatedly in the loop 
+     * moved variable declarations within the loop to outside, hopeing to help with GC */
     var randomPizzaNL=document.getElementsByClassName("randomPizzaContainer");
     var dx ;
     var newwidth;
@@ -475,6 +476,7 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+/* Not sure if we need the 100 random pizza to be generated on load, an area to explore */
 for (var i = 2; i < 100; i++) {
   var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
@@ -510,12 +512,13 @@ function updatePositions() {
 
   var items = document.querySelectorAll('.mover');
   var scrollTop = document.body.scrollTop / 1250;
-   var phase;
+  var phase;
+  var lt;
   for (var i = 0; i < items.length; i++) {
     phase = Math.sin(scrollTop + (i % 5));
-   // items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-   var lt = -items[i].basicLeft + 1000 * phase + 'px';
-        items[i].style.transform = "translateX("+lt+") translateZ(0)";
+    /* changed below lines to css3 transforms to reduce recalculating of styles */
+    lt = -items[i].basicLeft + 1000 * phase + 'px';
+    items[i].style.transform = "translateX("+lt+") translateZ(0)";
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
