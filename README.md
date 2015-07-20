@@ -1,5 +1,5 @@
 #Part 1: Optimize PageSpeed Insights score.
-
+##To run the optimize pageSpeed Insights, click on http://fitgit.github.io
 ##index.html
 1. Minifyed index.html,css and Javascripts. In-line comments are in commentedIndex.html for reference.
 2. In-lined the style.css, so as to take it out of the CRP.
@@ -13,7 +13,7 @@
 8. Moved the analytics to the end, before the end-body tag,so that text rendering is not blocked
 
 #Part 2: Optimize to 60 Frames per Second.
-
+##To run the optimize to 60FPS code, click on http://fitgit.github.io/views/pizza.html .
 ##views/css
 
 1. Added backface-visisblity to style.css, to have pizza in its own layer .<br>
