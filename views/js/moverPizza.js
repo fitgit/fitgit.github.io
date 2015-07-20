@@ -5,8 +5,10 @@ onmessage= function (event) {
 
   //console.log("item array=" + event.data.items);
   console.log("items=" + event.data.items + "typeof=" + typeof(event.data.items) + "scrollTop=" + event.data.scrollTop);
-  var items=JSON.parse(event.data.items);
-   console.log("items after parse=" + items.toString());
+  /*var items=JSON.parse(event.data.items);
+   console.log("items after parse=" + items.toString()); */
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(event.data.items, "text/html");
   var phase;
   var scrollTop=event.data.scrollTop;
   
