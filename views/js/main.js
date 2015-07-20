@@ -451,8 +451,9 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    //I see that randompizza is taking time to paint.
-    var randomPizzaNL=document.querySelectorAll(".randomPizzaContainer");
+    /*Changed from querySelectorAll to getElementsByClassName for performance.
+     *changed computing of randomPizza NodeList repeatedly in the loop */
+    var randomPizzaNL=document.getElementsByClassName("randomPizzaContainer");
     var dx ;
     var newwidth;
     for (var i = 0; i < document.randomPizzaNL.length; i++) {
