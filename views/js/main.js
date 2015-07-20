@@ -455,11 +455,10 @@ var resizePizzas = function(size) {
      *changed computing of randomPizza NodeList repeatedly in the loop 
      * moved variable declarations within the loop to outside, hopeing to help with GC */
     var randomPizzaNL=document.getElementsByClassName("randomPizzaContainer");
-    var dx ;
-    var newwidth;
-    for (var i = 0; i < document.randomPizzaNL.length; i++) {
-      dx = determineDx(randomPizzaNL[i], size);
-      newwidth = (randomPizzaNL[i].offsetWidth + dx) + 'px';
+    var randomPizzaNLLen=randomPizzaNL.length;
+    var dx= determineDx(randomPizzaNL[0], size);
+    var newwidth = (randomPizzaNL[0].offsetWidth + dx) + 'px';
+    for (var i = 0; i < randomPizzaNLLen; i++) {
       randomPizzaNL[i].style.width = newwidth;
     }
   }
@@ -477,8 +476,8 @@ window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
 /* Not sure if we need the 100 random pizza to be generated on load, an area to explore */
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -514,11 +513,11 @@ function updatePositions() {
   var scrollTop = document.body.scrollTop / 1250;
   var phase;
   var lt;
-  for (var i = 0; i < items.length; i++) {
-    phase = Math.sin(scrollTop + (i % 5));
+  var itemsLen=items.length;
+  for (var i = 0; i < itemsLen; i++) {
     /* changed below lines to css3 transforms to reduce recalculating of styles */
-    lt = -items[i].basicLeft + 1000 * phase + 'px';
-    items[i].style.transform = "translateX("+lt+") translateZ(0)";
+    phase = Math.sin(scrollTop + (i % 5)) * 100 + 'px';
+    items[i].style.transform = 'translateX(' + phase + ')';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -539,15 +538,17 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  var elem;
+  var movingPizzas = document.getElementById('movingPizzas1');
   for (var i = 0; i < 32; i++) {
-    var elem = document.createElement('img');
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
    /* elem.style.height = "100px";
     elem.style.width = "73.333px"; */
-    elem.basicLeft = (i % cols) * s;
+    elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPIzzas.appendChild(elem);
   }
   updatePositions();
 });
