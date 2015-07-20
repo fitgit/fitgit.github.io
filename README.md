@@ -15,7 +15,7 @@ index.html
       </script>
 4. Added media of print to remove css loading out of the CRP.
 5. Made perfmatters.js async, as it is analysing performance.
-6. Reduced the image size of profilePic.png to profilePicOrig.png. Profile pictures were updated on all other htmls.
+6. Reduced the image size of profilePic*png to profilePicOri*png. Profile pictures were updated on all other htmls.
 7. Reduced the image size  of Pizzeria.jpg to PizzeriaRed.jpg corresponding to the display.
       <img style="width: 100px;" src="views/images/pizzeriaRed.jpg">
 8. Moved the analytics to the end before the end-body tag,so that text rendering is not blocked
