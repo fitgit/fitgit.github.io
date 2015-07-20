@@ -31,7 +31,7 @@ form {
 /*Added backface-visisblity, to have pizza in its own layer, but it did not work */
 .mover {
   position: fixed;
-  width: 256px;
+  //width: 256px;
   z-index: -1;
   /* Added the first 2 transforms to have the mover pizzas in its own layer*/
   transform: translateZ(0);
