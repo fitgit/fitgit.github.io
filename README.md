@@ -1,6 +1,6 @@
-Part 1: Optimize PageSpeed Insights score for index.html
+#Part 1: Optimize PageSpeed Insights score for index.html
 
-index.html
+##index.html
 1. Minifyed index.html,css and Javascripts. In-line comments are in commentedIndex.html for reference.
 2. In-lined the style.css, so as to take it out of the CRP.
 3. changed loading of google font from CDN to WebFont loader.
