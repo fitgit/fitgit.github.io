@@ -34,9 +34,12 @@ form {
   /* commented the width in the mover class, as the width is constant 75 x 100 */
   //width: 256px;
   z-index: -1;
- /*Added backface-visisblity, to have pizza in its own layer */
+  /*force elements into their own composite layer */
+  transform: translateZ(0);
+  transform: translate3d(0,0,0); 
+  /*
   -webkit-backface-visibility: hidden; 
-  backface-visibility: hidden; 
+  backface-visibility: hidden; */
 }
 
 .randomPizzaContainer {
