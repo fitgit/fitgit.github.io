@@ -525,10 +525,12 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  /*var items = document.querySelectorAll('.mover');
   var arrayItems = Array.prototype.slice.call(items);
   console.log("items main=" + JSON.stringify(arrayItems));
-  var SarrayItems=JSON.stringify(arrayItems);
+  var SarrayItems=JSON.stringify(arrayItems);*/
+  var moverHTML=document.querySelectorAll('.mover').innerHTML;
+   console.log("innerHTML=" + moverHTML);
   var scrollTop=document.body.scrollTop;
   /*if Worker is defined for the browser and if myWebWorker is undefined, instantiate a webWorker */
   if(typeof(Worker) !== "undefined") {
@@ -540,7 +542,8 @@ function updatePositions() {
       console.log("Sorry! No Web Worker support.");
   }    
   /*var msg ={"items":SnodeList,"scrollTop":scrollTop};*/
-  var msg={"items":SarrayItems,"scrollTop":10};
+ // var msg={"items":SarrayItems,"scrollTop":10};
+ var msg={"items":moverHTML,"scrollTop":10};
   myWebWorker.postMessage(msg);
   myWebWorker.onmessage=function(event) {
     console.log("updatePositions:Done painting mover pizzas" + event.data.leftifiedItem);
