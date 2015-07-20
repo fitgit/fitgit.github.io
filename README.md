@@ -3,14 +3,14 @@
 ##index.html
 1. Minifyed index.html,css and Javascripts. In-line comments are in commentedIndex.html for reference.
 2. In-lined the style.css, so as to take it out of the CRP.
-3. changed loading of google font from CDN to WebFont loader.<br>
+3. Changed loading of google font from CDN to WebFont loader.<br>
       <!--link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" -->
-4. Added media of print to remove css loading out of the CRP.
+4. Added media of print to remove print.css loading out of the CRP.
 5. Made perfmatters.js async, as it is analysing performance.
-6. Reduced the image size of profilePic*png to profilePicOrig*png. Profile pictures were updated on all other htmls.
+6. Reduced the image size of profilePic*png to profilePicOrig*png appropriate for display.<br>Profile pictures were updated on all other htmls.
 7. Reduced the image size  of Pizzeria.jpg to PizzeriaRed.jpg corresponding to the display.<br>
       img style="width: 100px;" src="views/images/pizzeriaRed.jpg"
-8. Moved the analytics to the end before the end-body tag,so that text rendering is not blocked
+8. Moved the analytics to the end, before the end-body tag,so that text rendering is not blocked
 
 #Part 2: Optimize to 60 Frames per Second.
 
@@ -28,14 +28,14 @@
    img src="images/pizzeriaRed.jpg" class="img-responsive" 
 2. Made 2 copies of pizza.png, in the images.<br>
     First for foreground pizza(randomPizza.png) who's max display on img-responsive is 165 x 213, so reduced the size ideal      for display. Then changed the pizza.html to below.<br>
-      src="images/randomPizza.png" class="img-responsive.
+      src="images/randomPizza.png" class="img-responsive.<br>
     Second copy for the background pizza(pizza.png) reduced to display size of 73 x 100px in the images dir.
 3.  Did not minify html or css for readability(as CRP was not relevant for this part of the project).              
 
 ##views/js/main.js
 
 1.  Changed changePizzaSizes function having the line with document.querySelectorAll()<br> to<br> document.getElementsByClassName().<br>Changed computing of randomPizza NodeList repeatedly in the loop, by taking it out . Also moved variable declaration outside the loop for better GC.
-2.  Moved computing of scrollTop/1250 outside the loop as its constant. Moved create the var phase out of the for loop to        reduce garbage collection.
+2.  Moved computing of scrollTop/1250 outside the loop as its a constant. Moved declaration of the var phase out of the for      loop to reduce garbage collection.
     change the line below adding css3 transforms.
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px'; 
     to
