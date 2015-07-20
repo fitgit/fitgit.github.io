@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px"; */
     elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    movingPIzzas.appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
   updatePositions();
 });
