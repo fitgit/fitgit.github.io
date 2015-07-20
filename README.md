@@ -34,16 +34,16 @@
 
 ##views/js/main.js
 
-1.  Changed changePizzaSizes function having the line with document.querySelectorAll()<br> to<br> document.getElementsByClassName().<br>Changed computing of randomPizza NodeList repeatedly in the loop, by taking it out . Also moved variable declaration outside the loop for better GC.
-2.  Moved computing of scrollTop/1250 outside the loop as its a constant. Moved declaration of the var phase out of the for      loop to reduce garbage collection.
-    change the line below adding css3 transforms.
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px'; 
-    to
-    lt = -items[i].basicLeft + 1000 * phase + 'px';
-    items[i].style.transform = "translateX("+lt+") translateZ(0)";
+1.  Changed changePizzaSizes function having the line with document.querySelectorAll()<br> to<br> document.getElementsByClassName().<br>Changed computing of randomPizza NodeList repeatedly in the loop, by taking it out. Also moved variable declaration outside the loop for better GC.
+2.  Moved computing of scrollTop/1250 outside the loop as its a constant.<br>Moved declaration of the var phase out of the       fo loop to reduce garbage collection.<br>
+    Changed the line below adding css3 transforms.<br>
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px'; <br>
+    to<br>
+    lt = -items[i].basicLeft + 1000 * phase + 'px';<br>
+    items[i].style.transform = "translateX("+lt+") translateZ(0)";<br>
     
-3. changed the # of pizza imgs to 32 from 200.
-4. commented the code below, since I have reduced the size of background pizza manually.
-   /* elem.style.height = "100px";
-    elem.style.width = "73.333px"; */
+3. Changed the # of pizza imgs to 32 from 200.
+4. Commented the code below, since I have reduced the size of background pizza manually.<br>
+   /* elem.style.height = "100px";<br>
+    elem.style.width = "73.333px"; */<br>
 5.  Note:Please igngore the  moverPizza.js , which has the webworker code, for moving the for loop in updatePositions to a       worker. Which I tried to implement, but was not bettering the performance. I want to retain the code for future              reference.
