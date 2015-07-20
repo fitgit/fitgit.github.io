@@ -28,18 +28,15 @@ form {
 #pizzaSize {
   font-weight: 800;
 }
-/*Added backface-visisblity, to have pizza in its own layer, but it did not work */
+
 .mover {
   position: fixed;
+  /* commented the width in the mover class, as the width is constant 75 x 100 */
   //width: 256px;
   z-index: -1;
-  /* Added the first 2 transforms to have the mover pizzas in its own layer*/
-  /*transform: translateZ(0);
-  transform: translate3d(0,0,0); 
-  /* This is to reduce the layout time on an updatePosition call -update seem to take more on paint,hence commented 
-  transform: translateX();
-  -webkit-backface-visibility: hidden; /* Chrome, Safari, Open 
-  backface-visibility: hidden; */
+ /*Added backface-visisblity, to have pizza in its own layer */
+  -webkit-backface-visibility: hidden; 
+  backface-visibility: hidden; 
 }
 
 .randomPizzaContainer {
