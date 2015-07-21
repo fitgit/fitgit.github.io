@@ -1,19 +1,23 @@
 /*
-Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
-jank-free at 60 frames per second.
+Welcome to the 60fps project! My goal is to make Cam's Pizzeria website run
+jank-free at 60 frames per second on a scroll and initial loading.
 
-There are two major issues in this code that lead to sub-60fps performance. Can
-you spot and fix both?
-
-
-Built into the code, you'll find a few instances of the User Timing API
-(window.performance), which will be console.log()ing frame rate data into the
-browser console. To learn more about User Timing API, check out:
-http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-
+The original code was written by:
 Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
+
+There were a few optimizations done as per reviewer comments and has been added in-line.
+The major ones are,
+1. Reduced the # of images from 200 background pizzas to 32. The background pizzas is initially posted to the screen
+   in a 25 x 8(rows and columns). But then on a given visible screen there are only 4 rows that are visible. Hence 4*8=32 
+   was sufficient enough number.
+2. UpdatePositions is called on initial page load and on scroll. Optimized update positions, so that the constant scollTop/1250 
+   is moved out of the loop. As setting the style.left on every background image was taking a lot of time, transforms were added.
+3. Minor changes like substituting nodlList.length into a variable outside the , so that it need not be computed every time.
+4. Changed from slower document.querySelectorAll to better performing document.getElementByClassName or getElementsById where
+   ever applicable.
+   
 */
 
 // As you may have realized, this website randomly generates pizzas.
@@ -450,10 +454,13 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  /*  Changed from querySelectorAll to getElementsByClassName for performance.
+   *  changed computing of randomPizza NodeList repeatedly in the loop 
+   *  moved variable declarations within the loop to outside, hopeing to help with GC.
+   *  randomPizzaNodeList lenght was moved out of the loop.
+   *  As the size of the pizza's were the same, dx and newwidth computing was moved out as well.
+   */
   function changePizzaSizes(size) {
-    /*Changed from querySelectorAll to getElementsByClassName for performance.
-     *changed computing of randomPizza NodeList repeatedly in the loop 
-     * moved variable declarations within the loop to outside, hopeing to help with GC */
     var randomPizzaNL=document.getElementsByClassName("randomPizzaContainer");
     var randomPizzaNLLen=randomPizzaNL.length;
     var dx= determineDx(randomPizzaNL[0], size);
@@ -475,7 +482,7 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-/* Not sure if we need the 100 random pizza to be generated on load, an area to explore */
+/* Moved out of the for loop, as it was redundant*/
 var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
   pizzasDiv.appendChild(pizzaElementGenerator(i));
@@ -504,7 +511,13 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
-// Moves the sliding background pizzas based on scroll position
+ /* Reduced the # of images from 200 background pizzas to 32. The background pizzas is initially posted to the screen
+  * in a 25 x 8(rows and columns). But then on a given visible screen there are only about 7 rows and 5 cols that are visible.
+  * Hence about 7 *5=35 was sufficient enough number.
+  * UpdatePositions is called on initial page load and on scroll. Optimized updatePositions, so that the constant scollTop/1250 
+  * is moved out of the loop. As setting the style.left on every background image was taking a lot of time(recalculating styles onwards)
+  * transforms were added to mitigate recalculating styles.
+  */
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
@@ -515,8 +528,8 @@ function updatePositions() {
   var lt;
   var itemsLen=items.length;
   for (var i = 0; i < itemsLen; i++) {
-    /* changed below lines to css3 transforms to reduce recalculating of styles */
     phase = Math.sin(scrollTop + (i % 5)) * 100 + 'px';
+    /* changed below lines to css3 transforms to reduce recalculating of styles */
     items[i].style.transform = 'translateX(' + phase + ')';
   }
 
@@ -539,11 +552,13 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   var elem;
+  //moved out of the for loop, as this was a redundant in the loop.
   var movingPizzas = document.getElementById('movingPizzas1');
   for (var i = 0; i < 32; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
+    //commented the below code, as size was reduced manually.
    /* elem.style.height = "100px";
     elem.style.width = "73.333px"; */
     elem.style.left = (i % cols) * s + 'px';
