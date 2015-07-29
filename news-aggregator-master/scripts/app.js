@@ -267,7 +267,7 @@ APP.Main = (function() {
     for (var s = 0; s < storyLen; s++) {
 
       var story = storyElements[s];
-      var score = story.getElementsByClassName('story__score');
+      var score = story.querySelector('.story__score');
       var title = story.querySelector('.story__title');
 
       // Base the scale on the y position of the score.
